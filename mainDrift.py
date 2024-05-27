@@ -258,8 +258,9 @@ def main():
                             index=np.concatenate([i.flatten() for i in segment_bounderies["peaks"]]))
     label_colors = {}
     label_legned = {-1: "noise",
-                    0: "first cluster",
-                    1: "second cluster"}
+                    0: "1st cluster",
+                    1: "2nd cluster",
+                    2: "3rd cluster"}
     for k, col in zip(unique_labels, colors_):
         if k == -1:
             # Black used for noise.
@@ -269,7 +270,7 @@ def main():
         xy = matrix_v[class_member_mask]
         subplots["cluster"].plot(xy[:, 0], xy[:, 1] / 10, "o", markerfacecolor=col, markeredgecolor=col,
                                  markersize=3 * line_width_ratio,
-                                 label=label_legned[k] if k == 0 or k == 1 or k == -1 else str(k + 1) + "th cluster",
+                                 label=label_legned[k] if k == 0 or k == 1 or k == -1 or k == 3 else str(k + 1) + "th cluster",
                                  linewidth=line_width_ratio)
         for row_number in range(xy.shape[0]):
             if isinstance(col, str):
